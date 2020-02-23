@@ -70,8 +70,6 @@ public class MainActivity extends Activity implements ToggleButton.OnClickListen
 
     public Task createNewTask() {
         String STATUS_0 = "Взято в работу";
-        String STATUS_1 = "Ожидает";
-        String STATUS_2 = "Провалена";
         String TITLE = "Прием показаний от 00.00.0000 00:00";
         String ADDRESS = "Адрес задания в\n2 строки";
         String DATE = "Дата по 00.00.000";
