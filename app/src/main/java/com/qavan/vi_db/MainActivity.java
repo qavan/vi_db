@@ -5,49 +5,57 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ToggleButton;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.qavan.vi_db.adapter.TaskAdapter;
 
+import org.greenrobot.greendao.query.Query;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends Activity implements ToggleButton.OnClickListener {
-    private RecyclerView recyclerView;
-    private ToggleButton toggleButton;
-    private TaskAdapter adapter;
-    private List<Task> tasks = new ArrayList<>();
+    private RecyclerView mRecyclerView;
+    private ToggleButton mToggleButton;
+    private TaskAdapter mTaskAdapter;
+    private List<Task> mTasks;
+
+    public TaskDao getmTaskDao() {
+        return mTaskDao;
+    }
+
+    private TaskDao mTaskDao;
+    private Query<Task> tasksQuery;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_route);
 
-        recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mTasks = new ArrayList<>();
 
-        adapter = new TaskAdapter(tasks, getLayoutInflater());
+        mRecyclerView = findViewById(R.id.recyclerView);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        tasks = initialize3Tasks();
+        mTaskAdapter = new TaskAdapter(mTasks, getLayoutInflater(), this);
 
-        recyclerView.setAdapter(adapter);
+        mRecyclerView.setAdapter(mTaskAdapter);
 
-        toggleButton = findViewById(R.id.idCheckBoxService);
-        toggleButton.setOnClickListener(this);
+        mToggleButton = findViewById(R.id.idCheckBoxService);
+        mToggleButton.setOnClickListener(this);
 
+        DaoSession daoSession = ((App) getApplication()).getDaoSession();
+        mTaskDao = daoSession.getTaskDao();
+
+        tasksQuery = mTaskDao.queryBuilder().orderAsc(TaskDao.Properties.Id).build();
+        updateTasks();
     }
 
     @Override
     public void onClick(View v) {
-        Task task = new Task("Взято в работу",
-                "Прием показаний от 00.00.0000 00:00",
-                "Адрес задания в\n2 строки",
-                "Дата по 00.00.000", "Клиент",
-                null);
-        tasks.add(task);
-        adapter.notifyDataSetChanged();
+        addTask();
     }
 
     @Override
@@ -55,8 +63,12 @@ public class MainActivity extends Activity implements ToggleButton.OnClickListen
         super.onResume();
     }
 
+    public void updateTasks() {
+        mTasks = tasksQuery.list();
+        mTaskAdapter.setTasks(mTasks);
+    }
 
-    public List<Task> initialize3Tasks() {
+    public Task createNewTask() {
         String STATUS_0 = "Взято в работу";
         String STATUS_1 = "Ожидает";
         String STATUS_2 = "Провалена";
@@ -64,11 +76,16 @@ public class MainActivity extends Activity implements ToggleButton.OnClickListen
         String ADDRESS = "Адрес задания в\n2 строки";
         String DATE = "Дата по 00.00.000";
         String CLIENT = "Клиент";
-        List<Task> mTasks = new ArrayList<>();
-        mTasks.add(new Task(STATUS_0, TITLE, ADDRESS, DATE, CLIENT, null));
-        mTasks.add(new Task(STATUS_1, TITLE, ADDRESS, DATE, CLIENT, null));
-        mTasks.add(new Task(STATUS_0, TITLE, ADDRESS, DATE, CLIENT, null));
-        return mTasks;
+        return new Task(STATUS_0, TITLE, ADDRESS, DATE, CLIENT);
     }
 
+    public void addTask() {
+        Task task = createNewTask();
+        mTaskDao.insert(task);
+        updateTasks();
+    }
+
+    public List<Task> getTasks() {
+        return mTasks;
+    }
 }
