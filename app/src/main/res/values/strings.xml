@@ -27,7 +27,7 @@
 
     <string name="ROUT_CARD_STATUS_PROCESS">взято в работу</string>
     <string name="ROUT_CARD_TITLE_PLACEHOLDER">Прием показаний от 01.01.1970</string>
-    <string name="ROUT_CARD_ADDRESS_PLACEHOLDER_FULL">Тут должен быть адрес в две строки, просто верь этой надписи</string>
+    <string name="ROUT_CARD_ADDRESS_PLACEHOLDER_FULL">Тут должен быть адрес в две строки, просто верь этой надписи.\nМолодец, поверил!)</string>
     <string name="ROUT_CARD_DATE_PLACEHOLDER">До 01.01.1970</string>
     <string name="ROUT_CARD_PERSON_PLACEHOLDER">Клиент</string>
     <string name="ROUT_CARD_STATUS_WAIT">Ожидает выполнения</string>
