@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">vi_db</string>
-    <string name="add_task">Добавить задачу</string>
+    <string name="add_task">Добавить тест-задачу</string>
 
     <string name="CARD_INDICATOR_HINT">Предыдущее показание 0 от 01.01.1970</string>
     <string name="CARD_RECORD_BUTTON">записать</string>
-    <string name="CARD_TITLE">голосовой прием показаний</string>
+    <string name="CARD_TITLE">текстовый прием показаний</string>
     <string name="CARD_ELECTRICITY">Электроэнергия</string>
     <string name="CARD_HOT_WATER">Горячее водоснабжение</string>
     <string name="CARD_COLD_WATER">Холодное водоснабжение</string>

@@ -13,8 +13,6 @@ public class CardActivity extends Activity implements Button.OnClickListener {
     private final String TAG = "CARD_ACTIVITY";
     private Task mTask;
     private String mId;
-    private TaskDao mTaskDao;
-
     private TextView mElectricity;
     private TextView mHotWater;
     private TextView mColdWater;
@@ -28,7 +26,7 @@ public class CardActivity extends Activity implements Button.OnClickListener {
 
         DaoSession daoSession = ((App) getApplication()).getDaoSession();
 
-        mTaskDao = daoSession.getTaskDao();
+        TaskDao mTaskDao = daoSession.getTaskDao();
 
         mId = getIntent().getExtras().getString("ID");
 
@@ -62,5 +60,6 @@ public class CardActivity extends Activity implements Button.OnClickListener {
         mTask.setMCWValue1(Long.parseLong(mColdWater.getText().toString()));
         mTask.update();
         Log.i(TAG, "updated task with id = " + mId);
+        this.finish();
     }
 }
