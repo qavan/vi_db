@@ -1,6 +1,7 @@
 package com.qavan.vi_db;
 
 import android.app.Application;
+import android.content.Context;
 
 import org.greenrobot.greendao.database.Database;
 

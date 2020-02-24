@@ -33,26 +33,13 @@
             android:textSize="16sp"
             android:textStyle="bold" />
 
-        <ToggleButton
-            android:id="@+id/idCheckBoxService"
-            android:layout_width="55dp"
+        <Button
+            android:id="@+id/idAddTaskButton"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="5dp"
-            android:text="@string/start_service_before"
+            android:text="@string/add_task"
             android:textColor="@color/colorBlackPrimary"
-            android:textOff="@string/start_service_before"
-            android:textOn="@string/stop_service_after"
-            android:textSize="12sp" />
-
-        <ToggleButton
-            android:id="@+id/idCheckBoxViewControl"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/CARD_VIEW_CONTROL_OFF"
-            android:textColor="@color/colorBlackPrimary"
-            android:textOff="@string/CARD_VIEW_CONTROL_OFF"
-            android:textOn="@string/CARD_VIEW_CONTROL_ON"
             android:textSize="12sp" />
 
     </LinearLayout>

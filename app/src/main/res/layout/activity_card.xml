@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorGrayBackground"
     android:orientation="vertical"
-    tools:context="com.qavan.vi_db.MainActivity">
+    tools:context="com.qavan.vi_db.RouteActivity">
 
     <LinearLayout
         android:id="@+id/textViewTitleLayout"
@@ -85,7 +85,7 @@
 
                 <TextView
                     android:id="@+id/textViewId"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/CARD_ID"
                     android:textAlignment="center"
@@ -94,7 +94,7 @@
                     android:textStyle="normal" />
 
                 <TextView
-                    android:id="@+id/textViewIdNumbers"
+                    android:id="@+id/textViewClientIdNumbers"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/CARD_ID_PLACEHOLDER"
