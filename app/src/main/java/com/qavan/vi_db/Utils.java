@@ -16,7 +16,7 @@ class Utils {
         DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
         String DATE = formatter.format(now);
         String CLIENT = "Физлицо\\Юрлицо";
-        return new Task((byte) between(0, 0), TITLE, ADDRESS, DATE, CLIENT,
+        return new Task((byte) 0, TITLE, ADDRESS, DATE, CLIENT,
                 (byte) 1, (long) 0, null, null,
                 (byte) 1, (long) 0, null, null,
                 (byte) 1, (long) 0, null, null);

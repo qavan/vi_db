@@ -11,35 +11,35 @@ import org.greenrobot.greendao.DaoException;
 @Entity(active = true, nameInDb = "TASKS_TEST")
 public class Task {
     @Id
-    private Long id;
+    private Long TaskId;
     @NotNull
-    private Byte mStatus;
+    private Byte Status;
     @NotNull
-    private String mTitle;
+    private String Title;
     @NotNull
-    private String mAddress;
+    private String Address;
     @NotNull
-    private String mExpireDate;
+    private String ExpireDate;
     @NotNull
-    private String mClient;
+    private String Client;
     @NotNull
-    private Byte mEType;
+    private Byte ElectricityType;
     @NotNull
-    private Long mEValue1;
-    private Long mEValue2;
-    private Long mEValue3;
+    private Long ElectricityValue1;
+    private Long ElectricityValue2;
+    private Long ElectricityValue3;
     @NotNull
-    private Byte mHWType;
+    private Byte HotWaterType;
     @NotNull
-    private Long mHWValue1;
-    private Long mHWValue2;
-    private Long mHWValue3;
+    private Long HotWaterValue1;
+    private Long HotWaterValue2;
+    private Long HotWaterValue3;
     @NotNull
-    private Byte mCWType;
+    private Byte ColdWaterType;
     @NotNull
-    private Long mCWValue1;
-    private Long mCWValue2;
-    private Long mCWValue3;
+    private Long ColdWaterValue1;
+    private Long ColdWaterValue2;
+    private Long ColdWaterValue3;
     /**
      * Used to resolve relations
      */
@@ -57,49 +57,51 @@ public class Task {
          Byte hotWaterType, Long hotWaterValue1, @NotNull Long hotWaterValue2, @NotNull Long hotWaterValue3,
          Byte coldWaterType, Long coldWaterValue1, @NotNull Long coldWaterValue2, @NotNull Long coldWaterValue3
     ) {
-        this.mStatus = status;
-        this.mTitle = title;
-        this.mAddress = address;
-        this.mExpireDate = expireDate;
-        this.mClient = client;
-        this.mEType = electricityType;
-        this.mEValue1 = eValue1;
-        this.mEValue2 = eValue2;
-        this.mEValue3 = eValue3;
-        this.mHWType = hotWaterType;
-        this.mHWValue1 = hotWaterValue1;
-        this.mHWValue2 = hotWaterValue2;
-        this.mHWValue3 = hotWaterValue3;
-        this.mCWType = coldWaterType;
-        this.mCWValue1 = coldWaterValue1;
-        this.mCWValue2 = coldWaterValue2;
-        this.mCWValue3 = coldWaterValue3;
+        this.Status = status;
+        this.Title = title;
+        this.Address = address;
+        this.ExpireDate = expireDate;
+        this.Client = client;
+        this.ElectricityType = electricityType;
+        this.ElectricityValue1 = eValue1;
+        this.ElectricityValue2 = eValue2;
+        this.ElectricityValue3 = eValue3;
+        this.HotWaterType = hotWaterType;
+        this.HotWaterValue1 = hotWaterValue1;
+        this.HotWaterValue2 = hotWaterValue2;
+        this.HotWaterValue3 = hotWaterValue3;
+        this.ColdWaterType = coldWaterType;
+        this.ColdWaterValue1 = coldWaterValue1;
+        this.ColdWaterValue2 = coldWaterValue2;
+        this.ColdWaterValue3 = coldWaterValue3;
     }
 
 
-    @Generated(hash = 1091582456)
-    public Task(Long id, @NotNull Byte mStatus, @NotNull String mTitle, @NotNull String mAddress,
-                @NotNull String mExpireDate, @NotNull String mClient, @NotNull Byte mEType, @NotNull Long mEValue1,
-                Long mEValue2, Long mEValue3, @NotNull Byte mHWType, @NotNull Long mHWValue1, Long mHWValue2,
-                Long mHWValue3, @NotNull Byte mCWType, @NotNull Long mCWValue1, Long mCWValue2, Long mCWValue3) {
-        this.id = id;
-        this.mStatus = mStatus;
-        this.mTitle = mTitle;
-        this.mAddress = mAddress;
-        this.mExpireDate = mExpireDate;
-        this.mClient = mClient;
-        this.mEType = mEType;
-        this.mEValue1 = mEValue1;
-        this.mEValue2 = mEValue2;
-        this.mEValue3 = mEValue3;
-        this.mHWType = mHWType;
-        this.mHWValue1 = mHWValue1;
-        this.mHWValue2 = mHWValue2;
-        this.mHWValue3 = mHWValue3;
-        this.mCWType = mCWType;
-        this.mCWValue1 = mCWValue1;
-        this.mCWValue2 = mCWValue2;
-        this.mCWValue3 = mCWValue3;
+    @Generated(hash = 120659735)
+    public Task(Long TaskId, @NotNull Byte Status, @NotNull String Title, @NotNull String Address,
+                @NotNull String ExpireDate, @NotNull String Client, @NotNull Byte ElectricityType,
+                @NotNull Long ElectricityValue1, Long ElectricityValue2, Long ElectricityValue3,
+                @NotNull Byte HotWaterType, @NotNull Long HotWaterValue1, Long HotWaterValue2, Long HotWaterValue3,
+                @NotNull Byte ColdWaterType, @NotNull Long ColdWaterValue1, Long ColdWaterValue2,
+                Long ColdWaterValue3) {
+        this.TaskId = TaskId;
+        this.Status = Status;
+        this.Title = Title;
+        this.Address = Address;
+        this.ExpireDate = ExpireDate;
+        this.Client = Client;
+        this.ElectricityType = ElectricityType;
+        this.ElectricityValue1 = ElectricityValue1;
+        this.ElectricityValue2 = ElectricityValue2;
+        this.ElectricityValue3 = ElectricityValue3;
+        this.HotWaterType = HotWaterType;
+        this.HotWaterValue1 = HotWaterValue1;
+        this.HotWaterValue2 = HotWaterValue2;
+        this.HotWaterValue3 = HotWaterValue3;
+        this.ColdWaterType = ColdWaterType;
+        this.ColdWaterValue1 = ColdWaterValue1;
+        this.ColdWaterValue2 = ColdWaterValue2;
+        this.ColdWaterValue3 = ColdWaterValue3;
     }
 
 
@@ -108,183 +110,183 @@ public class Task {
     }
 
 
-    public Long getId() {
-        return this.id;
+    public Long getTaskId() {
+        return this.TaskId;
     }
 
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setTaskId(Long TaskId) {
+        this.TaskId = TaskId;
     }
 
 
-    public Byte getMStatus() {
-        return this.mStatus;
+    public Byte getStatus() {
+        return this.Status;
     }
 
 
-    public void setMStatus(Byte mStatus) {
-        this.mStatus = mStatus;
+    public void setStatus(Byte Status) {
+        this.Status = Status;
     }
 
 
-    public String getMTitle() {
-        return this.mTitle;
+    public String getTitle() {
+        return this.Title;
     }
 
 
-    public void setMTitle(String mTitle) {
-        this.mTitle = mTitle;
+    public void setTitle(String Title) {
+        this.Title = Title;
     }
 
 
-    public String getMAddress() {
-        return this.mAddress;
+    public String getAddress() {
+        return this.Address;
     }
 
 
-    public void setMAddress(String mAddress) {
-        this.mAddress = mAddress;
+    public void setAddress(String Address) {
+        this.Address = Address;
     }
 
 
-    public String getMExpireDate() {
-        return this.mExpireDate;
+    public String getExpireDate() {
+        return this.ExpireDate;
     }
 
 
-    public void setMExpireDate(String mExpireDate) {
-        this.mExpireDate = mExpireDate;
+    public void setExpireDate(String ExpireDate) {
+        this.ExpireDate = ExpireDate;
     }
 
 
-    public String getMClient() {
-        return this.mClient;
+    public String getClient() {
+        return this.Client;
     }
 
 
-    public void setMClient(String mClient) {
-        this.mClient = mClient;
+    public void setClient(String Client) {
+        this.Client = Client;
     }
 
 
-    public Byte getMEType() {
-        return this.mEType;
+    public Byte getElectricityType() {
+        return this.ElectricityType;
     }
 
 
-    public void setMEType(Byte mEType) {
-        this.mEType = mEType;
+    public void setElectricityType(Byte ElectricityType) {
+        this.ElectricityType = ElectricityType;
     }
 
 
-    public Long getMEValue1() {
-        return this.mEValue1;
+    public Long getElectricityValue1() {
+        return this.ElectricityValue1;
     }
 
 
-    public void setMEValue1(Long mEValue1) {
-        this.mEValue1 = mEValue1;
+    public void setElectricityValue1(Long ElectricityValue1) {
+        this.ElectricityValue1 = ElectricityValue1;
     }
 
 
-    public Long getMEValue2() {
-        return this.mEValue2;
+    public Long getElectricityValue2() {
+        return this.ElectricityValue2;
     }
 
 
-    public void setMEValue2(Long mEValue2) {
-        this.mEValue2 = mEValue2;
+    public void setElectricityValue2(Long ElectricityValue2) {
+        this.ElectricityValue2 = ElectricityValue2;
     }
 
 
-    public Long getMEValue3() {
-        return this.mEValue3;
+    public Long getElectricityValue3() {
+        return this.ElectricityValue3;
     }
 
 
-    public void setMEValue3(Long mEValue3) {
-        this.mEValue3 = mEValue3;
+    public void setElectricityValue3(Long ElectricityValue3) {
+        this.ElectricityValue3 = ElectricityValue3;
     }
 
 
-    public Byte getMHWType() {
-        return this.mHWType;
+    public Byte getHotWaterType() {
+        return this.HotWaterType;
     }
 
 
-    public void setMHWType(Byte mHWType) {
-        this.mHWType = mHWType;
+    public void setHotWaterType(Byte HotWaterType) {
+        this.HotWaterType = HotWaterType;
     }
 
 
-    public Long getMHWValue1() {
-        return this.mHWValue1;
+    public Long getHotWaterValue1() {
+        return this.HotWaterValue1;
     }
 
 
-    public void setMHWValue1(Long mHWValue1) {
-        this.mHWValue1 = mHWValue1;
+    public void setHotWaterValue1(Long HotWaterValue1) {
+        this.HotWaterValue1 = HotWaterValue1;
     }
 
 
-    public Long getMHWValue2() {
-        return this.mHWValue2;
+    public Long getHotWaterValue2() {
+        return this.HotWaterValue2;
     }
 
 
-    public void setMHWValue2(Long mHWValue2) {
-        this.mHWValue2 = mHWValue2;
+    public void setHotWaterValue2(Long HotWaterValue2) {
+        this.HotWaterValue2 = HotWaterValue2;
     }
 
 
-    public Long getMHWValue3() {
-        return this.mHWValue3;
+    public Long getHotWaterValue3() {
+        return this.HotWaterValue3;
     }
 
 
-    public void setMHWValue3(Long mHWValue3) {
-        this.mHWValue3 = mHWValue3;
+    public void setHotWaterValue3(Long HotWaterValue3) {
+        this.HotWaterValue3 = HotWaterValue3;
     }
 
 
-    public Byte getMCWType() {
-        return this.mCWType;
+    public Byte getColdWaterType() {
+        return this.ColdWaterType;
     }
 
 
-    public void setMCWType(Byte mCWType) {
-        this.mCWType = mCWType;
+    public void setColdWaterType(Byte ColdWaterType) {
+        this.ColdWaterType = ColdWaterType;
     }
 
 
-    public Long getMCWValue1() {
-        return this.mCWValue1;
+    public Long getColdWaterValue1() {
+        return this.ColdWaterValue1;
     }
 
 
-    public void setMCWValue1(Long mCWValue1) {
-        this.mCWValue1 = mCWValue1;
+    public void setColdWaterValue1(Long ColdWaterValue1) {
+        this.ColdWaterValue1 = ColdWaterValue1;
     }
 
 
-    public Long getMCWValue2() {
-        return this.mCWValue2;
+    public Long getColdWaterValue2() {
+        return this.ColdWaterValue2;
     }
 
 
-    public void setMCWValue2(Long mCWValue2) {
-        this.mCWValue2 = mCWValue2;
+    public void setColdWaterValue2(Long ColdWaterValue2) {
+        this.ColdWaterValue2 = ColdWaterValue2;
     }
 
 
-    public Long getMCWValue3() {
-        return this.mCWValue3;
+    public Long getColdWaterValue3() {
+        return this.ColdWaterValue3;
     }
 
 
-    public void setMCWValue3(Long mCWValue3) {
-        this.mCWValue3 = mCWValue3;
+    public void setColdWaterValue3(Long ColdWaterValue3) {
+        this.ColdWaterValue3 = ColdWaterValue3;
     }
 
 

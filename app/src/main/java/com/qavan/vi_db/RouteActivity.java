@@ -40,14 +40,13 @@ public class RouteActivity extends Activity implements ToggleButton.OnClickListe
 
         DaoSession daoSession = ((App) getApplication()).getDaoSession();
         mTaskDao = daoSession.getTaskDao();
-
-        tasksQuery = mTaskDao.queryBuilder().orderAsc(TaskDao.Properties.Id).build();
-        Utils.updateTasks(mTasks, tasksQuery, mTaskAdapter);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        tasksQuery = mTaskDao.queryBuilder().orderAsc(TaskDao.Properties.TaskId).build();
+        Utils.updateTasks(mTasks, tasksQuery, mTaskAdapter);
     }
 
     @Override

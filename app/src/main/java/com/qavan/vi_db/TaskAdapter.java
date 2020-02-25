@@ -44,7 +44,7 @@ public class TaskAdapter extends RecyclerView.Adapter {
         @Override
         public void onClick(View v) {
             Task task = mTasksDataset.get(getLayoutPosition());
-            Long taskId = task.getId();
+            Long taskId = task.getTaskId();
             Intent intent = new Intent(((RouteActivity) mActivity).getContext(), CardActivity.class);
             intent.putExtra("ID", taskId.toString());
             mActivity.startActivity(intent);
@@ -61,7 +61,7 @@ public class TaskAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Task task = mTasksDataset.get(position);
-        Byte taskStatus = task.getMStatus();
+        Byte taskStatus = task.getStatus();
         if (taskStatus == 0) {
             TaskViewHolder.status.setText(R.string.ROUT_CARD_STATUS_PROCESS);
         } else if (taskStatus == 1) {
@@ -70,11 +70,13 @@ public class TaskAdapter extends RecyclerView.Adapter {
         } else if (taskStatus == 2) {
             TaskViewHolder.status.setText(R.string.ROUT_CARD_STATUS_DEAD);
             TaskViewHolder.status.setTextColor(((RouteActivity) mActivity).getContext().getResources().getColor(R.color.addRed));
+        } else if (taskStatus == 4) {
+            TaskViewHolder.status.setText("Завершено");
         }
-        TaskViewHolder.title.setText(task.getMTitle());
-        TaskViewHolder.address.setText(task.getMAddress());
-        TaskViewHolder.date.setText(String.format("До %s", task.getMExpireDate()));
-        TaskViewHolder.client.setText(task.getMClient());
+        TaskViewHolder.title.setText(task.getTitle());
+        TaskViewHolder.address.setText(task.getAddress());
+        TaskViewHolder.date.setText(String.format("До %s", task.getExpireDate()));
+        TaskViewHolder.client.setText(task.getClient());
     }
 
     @Override
