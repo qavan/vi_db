@@ -62,10 +62,12 @@ public class CardActivity extends Activity implements Button.OnClickListener {
         mTask.setElectricityValue1(electricity);
         mTask.setHotWaterValue1(hotWater);
         mTask.setColdWaterValue1(coldWater);
-        if (electricity > 0 && hotWater > 0 && coldWater > 0) {
-            mTask.setStatus((byte) 4);
-        } else if (electricity > 0 | hotWater > 0 | coldWater > 0) {
+        if (electricity > (long) 0 & hotWater > (long) 0 & coldWater > (long) 0) {
+            mTask.setStatus((byte) 3);
+        } else if (electricity.equals((long) 0) | hotWater.equals((long) 0) | coldWater.equals((long) 0)) {
             mTask.setStatus((byte) 1);
+        } else {
+            mTask.setStatus((byte) 2);
         }
         mTask.update();
         Log.i(TAG, "updated task with id = " + mId);

@@ -2,6 +2,7 @@ package com.qavan.vi_db;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -40,6 +41,13 @@ public class RouteActivity extends Activity implements ToggleButton.OnClickListe
 
         DaoSession daoSession = ((App) getApplication()).getDaoSession();
         mTaskDao = daoSession.getTaskDao();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        tasksQuery = mTaskDao.queryBuilder().orderAsc(TaskDao.Properties.TaskId).build();
+        Utils.updateTasks(mTasks, tasksQuery, mTaskAdapter);
     }
 
     @Override

@@ -70,7 +70,7 @@ public class TaskAdapter extends RecyclerView.Adapter {
         } else if (taskStatus == 2) {
             TaskViewHolder.status.setText(R.string.ROUT_CARD_STATUS_DEAD);
             TaskViewHolder.status.setTextColor(((RouteActivity) mActivity).getContext().getResources().getColor(R.color.addRed));
-        } else if (taskStatus == 4) {
+        } else if (taskStatus == 3) {
             TaskViewHolder.status.setText("Завершено");
         }
         TaskViewHolder.title.setText(task.getTitle());
