@@ -20,7 +20,7 @@ android {
     }
 }
 
-greendao { schemaVersion 12 }
+greendao { schemaVersion 13 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])

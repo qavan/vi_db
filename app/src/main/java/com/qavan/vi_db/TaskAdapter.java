@@ -62,16 +62,23 @@ public class TaskAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Task task = mTasksDataset.get(position);
         Byte taskStatus = task.getStatus();
-        if (taskStatus == 0) {
-            TaskViewHolder.status.setText(R.string.ROUT_CARD_STATUS_PROCESS);
-        } else if (taskStatus == 1) {
-            TaskViewHolder.status.setText(R.string.ROUT_CARD_STATUS_WAIT);
-            TaskViewHolder.status.setTextColor(((RouteActivity) mActivity).getContext().getResources().getColor(R.color.addOrange));
-        } else if (taskStatus == 2) {
-            TaskViewHolder.status.setText(R.string.ROUT_CARD_STATUS_DEAD);
-            TaskViewHolder.status.setTextColor(((RouteActivity) mActivity).getContext().getResources().getColor(R.color.addRed));
-        } else if (taskStatus == 3) {
-            TaskViewHolder.status.setText("Завершено");
+        switch (taskStatus) {
+            case 0:
+                TaskViewHolder.status.setText(R.string.ROUT_CARD_STATUS_PROCESS);
+                TaskViewHolder.status.setTextColor(((RouteActivity) mActivity).getContext().getResources().getColor(R.color.addGreen));
+                break;
+            case 1:
+                TaskViewHolder.status.setText("Завершено");
+                TaskViewHolder.status.setTextColor(((RouteActivity) mActivity).getContext().getResources().getColor(R.color.addGreen));
+                break;
+            case 2:
+                TaskViewHolder.status.setText(R.string.ROUT_CARD_STATUS_WAIT);
+                TaskViewHolder.status.setTextColor(((RouteActivity) mActivity).getContext().getResources().getColor(R.color.addOrange));
+                break;
+            case 3:
+                TaskViewHolder.status.setText(R.string.ROUT_CARD_STATUS_DEAD);
+                TaskViewHolder.status.setTextColor(((RouteActivity) mActivity).getContext().getResources().getColor(R.color.addRed));
+                break;
         }
         TaskViewHolder.title.setText(task.getTitle());
         TaskViewHolder.address.setText(task.getAddress());

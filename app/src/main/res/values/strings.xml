@@ -2,12 +2,12 @@
     <string name="app_name">vi_db</string>
     <string name="add_task">Добавить задачу</string>
 
-    <string name="CARD_INDICATOR_HINT">Предыдущее показание 0 от 01.01.1970</string>
+    <string name="CARD_INDICATOR_HINT">""</string>
     <string name="CARD_RECORD_BUTTON">записать</string>
     <string name="CARD_TITLE">текстовый прием показаний</string>
     <string name="CARD_ELECTRICITY">Электроэнергия</string>
-    <string name="CARD_HOT_WATER">Горячее водоснабжение</string>
-    <string name="CARD_COLD_WATER">Холодное водоснабжение</string>
+    <string name="CARD_HOT_WATER">ГВС</string>
+    <string name="CARD_COLD_WATER">ХВС</string>
     <string name="CARD_ID">Лицевой счёт</string>
     <string name="CARD_INDICATOR_ID">Номер счетчика</string>
     <string name="CARD_ID_PLACEHOLDER">00000 000000</string>

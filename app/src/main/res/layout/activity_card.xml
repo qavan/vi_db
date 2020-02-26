@@ -32,13 +32,12 @@
     <LinearLayout
         android:id="@+id/cardsLinearLayout"
         android:layout_width="match_parent"
-        android:layout_height="460dp"
+        android:layout_height="410dp"
         android:background="@color/colorWhite"
         android:gravity="center"
         android:orientation="vertical"
-        android:paddingLeft="20dp"
-        android:paddingTop="10dp"
-        android:paddingRight="20dp">
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 
         <LinearLayout
             android:id="@+id/idLayouts"
@@ -46,7 +45,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingBottom="35dp">
+            android:paddingBottom="15dp">
 
             <LinearLayout
                 android:id="@+id/counterId"
@@ -105,6 +104,67 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/electricityLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewElectricity"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="0dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto"
+                android:text="@string/CARD_ELECTRICITY"
+                android:textColor="@color/colorBlackPrimary"
+                android:textSize="18sp"
+                android:textStyle="normal|bold" />
+
+            <LinearLayout
+                android:id="@+id/electricityCountsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/editTextElectricity1"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_weight="0.33"
+                    android:hint="@string/CARD_INDICATOR_HINT"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:textColorHint="@color/colorOfActivity"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/editTextElectricity2"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_weight="0.33"
+                    android:hint="@string/CARD_INDICATOR_HINT"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:textColorHint="@color/colorOfActivity"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/editTextElectricity3"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_weight="0.33"
+                    android:hint="@string/CARD_INDICATOR_HINT"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:textColorHint="@color/colorOfActivity"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/hotWaterLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -119,21 +179,54 @@
                 android:layout_marginEnd="0dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/roboto"
-                android:text="@string/CARD_ELECTRICITY"
+                android:text="@string/CARD_HOT_WATER"
                 android:textColor="@color/colorBlackPrimary"
                 android:textSize="18sp"
                 android:textStyle="normal|bold" />
 
-            <EditText
-                android:id="@+id/editText"
+            <LinearLayout
+                android:id="@+id/hotWaterCountsLayout"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:hint="@string/CARD_INDICATOR_HINT"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:singleLine="false"
-                android:textColorHint="@color/colorOfActivity"
-                android:textSize="16sp" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/editTextHotWater1"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_weight="0.33"
+                    android:hint="@string/CARD_INDICATOR_HINT"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:singleLine="false"
+                    android:textColorHint="@color/colorOfActivity"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/editTextHotWater2"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_weight="0.33"
+                    android:hint="@string/CARD_INDICATOR_HINT"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:singleLine="false"
+                    android:textColorHint="@color/colorOfActivity"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/editTextHotWater3"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_weight="0.33"
+                    android:hint="@string/CARD_INDICATOR_HINT"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:singleLine="false"
+                    android:textColorHint="@color/colorOfActivity"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -152,51 +245,50 @@
                 android:layout_marginEnd="0dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/roboto"
-                android:text="@string/CARD_HOT_WATER"
-                android:textColor="@color/colorBlackPrimary"
-                android:textSize="18sp"
-                android:textStyle="normal|bold" />
-
-            <EditText
-                android:id="@+id/editText2"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:hint="@string/CARD_INDICATOR_HINT"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:textColorHint="@color/colorOfActivity"
-                android:textSize="16sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/electricityLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textViewElectricity"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="0dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/roboto"
                 android:text="@string/CARD_COLD_WATER"
                 android:textColor="@color/colorBlackPrimary"
                 android:textSize="18sp"
                 android:textStyle="normal|bold" />
 
-            <EditText
-                android:id="@+id/editText3"
+            <LinearLayout
+                android:id="@+id/coldWaterCountsLayout"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:hint="@string/CARD_INDICATOR_HINT"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:textColorHint="@color/colorOfActivity"
-                android:textSize="16sp" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/editTextColdWater1"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_weight="0.33"
+                    android:hint="@string/CARD_INDICATOR_HINT"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:textColorHint="@color/colorOfActivity"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/editTextColdWater2"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_weight="0.33"
+                    android:hint="@string/CARD_INDICATOR_HINT"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:textColorHint="@color/colorOfActivity"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/editTextColdWater3"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_weight="0.33"
+                    android:hint="@string/CARD_INDICATOR_HINT"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:textColorHint="@color/colorOfActivity"
+                    android:textSize="16sp" />
+            </LinearLayout>
 
         </LinearLayout>
 
