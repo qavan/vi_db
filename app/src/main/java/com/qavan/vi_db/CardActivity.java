@@ -11,28 +11,27 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Objects;
+
 
 public class CardActivity extends Activity implements Button.OnClickListener {
     private final String TAG = "CARD_ACTIVITY";
+    private TaskDao mTaskDao;
     private Task mCurrentTaskInCard;
-    private TextView mTVAddress;
-    private TextView mTVClient;
+    private TextView mETClient;
+    private TextView mETClientId;
+    private TextView mETAddress;
     private TextView mTVPrevDate;
-    private TextView mTVPrevValue;
     private TextView mTVCurrentDate;
-    private TextView mTVCurrentValue;
+    private TextView mTVPrevValue;
+    private EditText mTVCurrentValue;
     private Long mId;
     private String mAddress;
     private String mClient;
     private String mClientId;
     private Date mPrevDate;
-    private Long mPrevValue;
     private Date mCurrentDate;
+    private Long mPrevValue;
     private Long mCurrentValue;
 
     @Override
@@ -42,33 +41,15 @@ public class CardActivity extends Activity implements Button.OnClickListener {
 
         DaoSession daoSession = ((App) getApplication()).getDaoSession();
 
-        TaskDao mTaskDao = daoSession.getTaskDao();
+        mTaskDao = daoSession.getTaskDao();
 
-        DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
-
-        mId = getIntent().getExtras().getLong("id");
-        mAddress = getIntent().getExtras().getString("address");
-        mClient = getIntent().getExtras().getString("client");
-        mClientId = getIntent().getExtras().getString("client id");
-        //TODO ADD NORMAL CHECK
-
-
-//        try {
-//            Toast.makeText(this, formatter.parse(getIntent().getExtras().getString("prev date")).toString(), Toast.LENGTH_SHORT).show();
-//            Toast.makeText(this, formatter.parse(getIntent().getExtras().getString("current date")).toString(), Toast.LENGTH_SHORT).show();
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//        try {
-//            mPrevDate = formatter.parse(getIntent().getExtras().getString("prev date"));
-//            mCurrentDate = formatter.parse(getIntent().getExtras().getString("prev date"));
-//        } catch (ParseException e) {
-//            Toast.makeText(this, "Ошибка открытия карточки", Toast.LENGTH_SHORT).show();
-//        }
-        mPrevValue = getIntent().getExtras().getLong("prev date value");
-        mCurrentValue = getIntent().getExtras().getLong("current date value");
-
-        mCurrentTaskInCard = mTaskDao.queryBuilder().where(TaskDao.Properties.TaskId.eq(mId)).build().list().get(0);
+        mETClientId = findViewById(R.id.idClientIdEditText);
+        mETClient = findViewById(R.id.idClientEditText);
+        mETAddress = findViewById(R.id.idAddressEditText);
+        mTVPrevDate = findViewById(R.id.idPrevDateTextView);
+        mTVPrevValue = findViewById(R.id.idPrevValueEditText);
+        mTVCurrentDate = findViewById(R.id.idСurrentDateTextView);
+        mTVCurrentValue = findViewById(R.id.idCurrentValueEditText);
 
         Button bWrite = findViewById(R.id.button);
         bWrite.setOnClickListener(this);
@@ -77,15 +58,34 @@ public class CardActivity extends Activity implements Button.OnClickListener {
     @Override
     protected void onResume() {
         super.onResume();
+
+        mId = getIntent().getExtras().getLong("id");
+        mCurrentTaskInCard = mTaskDao.queryBuilder().where(TaskDao.Properties.TaskId.eq(mId)).build().list().get(0);
+        mAddress = mCurrentTaskInCard.getC_address();
+        mClient = mCurrentTaskInCard.getC_client();
+        mClientId = mCurrentTaskInCard.getC_client_id();
+        mPrevDate = mCurrentTaskInCard.getD_prev_date();
+        mCurrentDate = mCurrentTaskInCard.getD_current_date();
+        mPrevValue = mCurrentTaskInCard.getN_prev_value();
+        mCurrentValue = mCurrentTaskInCard.getN_current_value();
+        if (mPrevDate == null) {
+            Toast.makeText(this, "Даты отсутствуют mPrevDate", Toast.LENGTH_LONG).show();
+        } else if (mCurrentDate == null) {
+            Toast.makeText(this, "Даты отсутствуют mCurrentDate", Toast.LENGTH_LONG).show();
+        }
+
+        mETClientId.setText(mCurrentTaskInCard.getC_client_id());
+        mETClient.setText(mCurrentTaskInCard.getC_client());
+        mETAddress.setText(mCurrentTaskInCard.getC_address());
+        mTVPrevDate.setText(String.format("Предыдущее от %s", Utils.getFormattedDMYDate(mCurrentTaskInCard.getD_prev_date())));
+        mTVCurrentDate.setText(String.format("   Текущее от %s", Utils.getFormattedDMYDate(mCurrentTaskInCard.getD_current_date())));
+        mTVPrevValue.setText(mCurrentTaskInCard.getN_prev_value().toString());
+        mTVCurrentValue.setText(mCurrentTaskInCard.getN_current_value().toString());
     }
 
     @Override
     public void onClick(View v) {
-        EditText ETCurrentValue = findViewById(R.id.idCurrentValueEditText);
-        Long value = Long.parseLong(ETCurrentValue.getText().toString());
-        if (value > 0) {
-            mCurrentTaskInCard.setN_current_value(value);
-            mCurrentTaskInCard.update();
+        if (false) {
             Log.i(TAG, "updated task with id = " + mId);
             Toast.makeText(this, "Показания записаны", Toast.LENGTH_SHORT).show();
             this.finish();

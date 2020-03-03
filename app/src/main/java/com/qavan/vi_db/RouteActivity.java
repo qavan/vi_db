@@ -15,11 +15,15 @@ import org.greenrobot.greendao.query.Query;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.OkHttpClient;
+
 public class RouteActivity extends Activity implements ToggleButton.OnClickListener {
     private TaskAdapter mTaskAdapter;
     private List<Task> mTasks;
     private TaskDao mTaskDao;
     private Query<Task> tasksQuery;
+    private OkHttpClient mHttpClient = new OkHttpClient();
+
 
 
     @Override

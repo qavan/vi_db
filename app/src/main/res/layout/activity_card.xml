@@ -32,7 +32,7 @@
     <LinearLayout
         android:id="@+id/cardsLinearLayout"
         android:layout_width="match_parent"
-        android:layout_height="460dp"
+        android:layout_height="400dp"
         android:background="@color/colorWhite"
         android:gravity="center"
         android:orientation="vertical"
@@ -307,43 +307,55 @@
             android:layout_marginBottom="5dp"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/idIdTextView"
+            <LinearLayout
+                android:id="@+id/idClientLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Номер клиента"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/idClientIdTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.35"
+                    android:text="@string/CARD_ID"
+                    android:textColor="@color/colorBlackPrimaryLightOP45"
+                    android:textSize="18sp"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/idClientIdEditText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.65"
+                    android:autofillHints=""
+                    android:clickable="false"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:gravity="bottom"
+                    android:text="@string/COMMON_TEXT_PLACEHOLDER"
+                    android:textColor="@color/colorBlackPrimary"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/idClientTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ROUT_CARD_PERSON_PLACEHOLDER"
                 android:textColor="@color/colorBlackPrimaryLightOP45"
                 android:textSize="18sp"
                 android:textStyle="normal" />
 
-            <EditText
-                android:id="@+id/idIdEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="none"
-                android:text="Номер"
-                android:textAlignment="center"
-                android:textColor="@color/colorBlackPrimary"
-                android:textSize="20sp" />
-
             <TextView
-                android:id="@+id/idClientIdTextView"
+                android:id="@+id/idClientEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ФИО"
-                android:textColor="@color/colorBlackPrimaryLightOP45"
-                android:textSize="18sp"
-                android:textStyle="normal" />
-
-            <EditText
-                android:id="@+id/idClientIdEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:editable="false"
+                android:autofillHints="@string/CARD_COMMON_PLACEHOLDER"
+                android:clickable="false"
                 android:ems="10"
-                android:inputType="none"
-                android:text="ФИО"
+                android:focusable="false"
+                android:text="@string/COMMON_TEXT_PLACEHOLDER"
                 android:textAlignment="center"
                 android:textColor="@color/colorBlackPrimary"
                 android:textSize="20sp" />
@@ -352,19 +364,20 @@
                 android:id="@+id/idAddressIdTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Адрес"
+                android:text="@string/CARD_ADDRESS"
                 android:textColor="@color/colorBlackPrimaryLightOP45"
                 android:textSize="18sp"
                 android:textStyle="normal" />
 
-            <EditText
-                android:id="@+id/editText3"
+            <TextView
+                android:id="@+id/idAddressEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:editable="false"
+                android:autofillHints="@string/CARD_COMMON_PLACEHOLDER"
+                android:clickable="false"
                 android:ems="10"
-                android:inputType="none"
-                android:text="Адрес"
+                android:focusable="false"
+                android:text="@string/COMMON_TEXT_PLACEHOLDER"
                 android:textAlignment="center"
                 android:textColor="@color/colorBlackPrimary"
                 android:textSize="20sp" />
@@ -380,19 +393,22 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.6"
-                    android:text="Предыдущее от 01.01.1970"
+                    android:text="@string/ROUT_CARD_PREV_DATE_PLACEHOLDER"
                     android:textColor="@color/colorBlackPrimaryLightOP45"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textStyle="normal" />
 
-                <EditText
+                <TextView
                     android:id="@+id/idPrevValueEditText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.4"
+                    android:autofillHints="@string/CARD_COMMON_PLACEHOLDER"
+                    android:clickable="false"
                     android:ems="10"
+                    android:focusable="false"
                     android:inputType="none"
-                    android:text="значение"
+                    android:text="@string/COMMON_TEXT_PLACEHOLDER"
                     android:textAlignment="center"
                     android:textColor="@color/colorBlackPrimary"
                     android:textSize="20sp" />
@@ -405,13 +421,13 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/idcurrentDateTextView"
+                    android:id="@+id/idСurrentDateTextView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.6"
-                    android:text="Текущее от 01.01.1970"
+                    android:text="@string/ROUT_CARD_CURRENT_DATE_PLACEHOLDER"
                     android:textColor="@color/colorBlackPrimaryLightOP45"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textStyle="normal" />
 
                 <EditText
@@ -419,9 +435,11 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.4"
+                    android:hint="@string/COMMON_CURRENT_VALUE"
+                    android:autofillHints="@string/CARD_COMMON_PLACEHOLDER"
                     android:ems="10"
                     android:inputType="number"
-                    android:text="значение"
+                    android:text="@string/COMMON_TEXT_PLACEHOLDER"
                     android:textAlignment="center"
                     android:textColor="@color/colorBlackPrimary"
                     android:textSize="20sp" />

@@ -11,21 +11,10 @@ import java.util.Random;
 
 class Utils {
     static Task createDefaultOneTypeSizeTask() {
-        String TITLE = "Прием показаний от 01.01.1970 00:00";
         String ADDRESS = "HERE IS ADDRESS IN\nTWO LINES";
-        Date now = new Date();
-        DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
-        try {
-            Date DATE = formatter.parse(now.toString());
-            String CLIENT = "CLIENT NAME";
-            String CLIENT_ID = "CLIENT ID";
-            return new Task(CLIENT, ADDRESS, CLIENT_ID, DATE, (long) 0, DATE, (long) 0, false);
-        } catch (ParseException e) {
-            Date DATE = now;
-            String CLIENT = "CLIENT NAME";
-            String CLIENT_ID = "CLIENT ID";
-            return new Task(CLIENT, ADDRESS, CLIENT_ID, DATE, (long) 0, DATE, (long) 0, false);
-        }
+        String CLIENT = "CLIENT NAME";
+        String CLIENT_ID = "CLIENT ID";
+        return new Task(CLIENT, ADDRESS, CLIENT_ID, getCurrentDate(), (long) 0, getCurrentDate(), (long) 0, false);
     }
 
     static void updateTasks(List<Task> tasks, Query<Task> tasksQuery, TaskAdapter mTaskAdapter) {
@@ -35,5 +24,14 @@ class Utils {
 
     static int between(int min, int max) {
         return new Random().nextInt(max - min + 1) + min;
+    }
+
+    public static String getFormattedDMYDate(Date date) {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
+        return formatter.format(date);
+    }
+
+    public static Date getCurrentDate() {
+        return new Date();
     }
 }

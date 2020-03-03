@@ -2,23 +2,30 @@
     <string name="app_name">vi_db</string>
     <string name="add_task">Добавить задачу</string>
 
-    <string name="CARD_INDICATOR_HINT">""</string>
+    <string name="CARD_INDICATOR_HINT">Введите значение</string>
     <string name="CARD_RECORD_BUTTON">записать</string>
     <string name="CARD_TITLE">текстовый прием показаний</string>
     <string name="CARD_ELECTRICITY">Электроэнергия</string>
     <string name="CARD_HOT_WATER">ГВС</string>
     <string name="CARD_COLD_WATER">ХВС</string>
-    <string name="CARD_ID">Лицевой счёт</string>
+    <string name="CARD_ID">Лицевой счёт\nНомер</string>
     <string name="CARD_INDICATOR_ID">Номер счетчика</string>
     <string name="CARD_ID_PLACEHOLDER">00000 000000</string>
     <string name="CARD_INDICATOR_ID_PLACEHOLDER">000000000000</string>
+    <string name="CARD_COMMON_PLACEHOLDER">Тут должно быть значение</string>
+    <string name="CARD_ADDRESS">Адрес</string>
 
     <string name="ROUT_CARD_STATUS_PROCESS">взято в работу</string>
     <string name="ROUT_CARD_TITLE_PLACEHOLDER">Прием показаний от 01.01.1970 00:00</string>
     <string name="ROUT_CARD_ADDRESS_PLACEHOLDER_FULL">Тут должен быть адрес в две строки, просто верь этой надписи.\nМолодец, поверил!)</string>
     <string name="ROUT_CARD_DATE_PLACEHOLDER">До 01.01.1970</string>
+    <string name="ROUT_CARD_PREV_DATE_PLACEHOLDER">Предыдущее от 01.01.1970</string>
+    <string name="ROUT_CARD_CURRENT_DATE_PLACEHOLDER">\t\t\t\t\tТекущее от 01.01.1970</string>
     <string name="ROUT_CARD_PERSON_PLACEHOLDER">Клиент</string>
     <string name="ROUT_CARD_STATUS_WAIT">Ожидает выполнения</string>
     <string name="ROUT_CARD_STATUS_DEAD">Отменен</string>
     <string name="ROUT_TITLE">Маршрутный лист</string>
+    <string name="COMMON_TEXT_PLACEHOLDER">PLACEHOLDER</string>
+    <string name="COMMON_CURRENT_VALUE">Текущее значение</string>
+    <string name="ROUT_CARD_STATUS_DONE">Завершено</string>
 </resources>

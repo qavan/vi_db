@@ -46,13 +46,6 @@ public class TaskAdapter extends RecyclerView.Adapter {
             Task task = mTasksDataset.get(getLayoutPosition());
             Intent intent = new Intent(((RouteActivity) mActivity).getContext(), CardActivity.class);
             intent.putExtra("id", task.getTaskId());
-            intent.putExtra("address", task.getC_address());
-            intent.putExtra("client", task.getC_client());
-            intent.putExtra("client id", task.getC_client_id());
-            intent.putExtra("prev date", task.getD_prev_date().toString());
-            intent.putExtra("prev date value", task.getN_prev_value());
-            intent.putExtra("current date", task.getD_current_date().toString());
-            intent.putExtra("current date value", task.getN_current_value());
             mActivity.startActivity(intent);
         }
     }
@@ -69,15 +62,16 @@ public class TaskAdapter extends RecyclerView.Adapter {
         Task task = mTasksDataset.get(position);
         Boolean taskStatus = task.getB_done();
         if (taskStatus) {
+            TaskViewHolder.status.setText(R.string.ROUT_CARD_STATUS_DONE);
+            TaskViewHolder.status.setTextColor(((RouteActivity) mActivity).getContext().getResources().getColor(R.color.addGreen));
+        } else {
             TaskViewHolder.status.setText(R.string.ROUT_CARD_STATUS_PROCESS);
             TaskViewHolder.status.setTextColor(((RouteActivity) mActivity).getContext().getResources().getColor(R.color.addOrange));
-        } else {
-            TaskViewHolder.status.setText("Завершено");
-            TaskViewHolder.status.setTextColor(((RouteActivity) mActivity).getContext().getResources().getColor(R.color.addGreen));
         }
+
         TaskViewHolder.title.setText("Приём показаний");
         TaskViewHolder.address.setText(task.getC_address());
-        TaskViewHolder.date.setText(String.format("До %s", task.getD_prev_date()));
+        TaskViewHolder.date.setText(String.format("До %s", Utils.getFormattedDMYDate(task.getD_prev_date())));
         TaskViewHolder.client.setText(task.getC_client());
     }
 
