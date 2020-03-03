@@ -5,26 +5,35 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Objects;
+
 public class CardActivity extends Activity implements Button.OnClickListener {
     private final String TAG = "CARD_ACTIVITY";
-    private Task mTask;
-    private String mId;
-    private TextView mElectricityValue1;
-    private TextView mElectricityValue2;
-    private TextView mElectricityValue3;
-    private TextView mHotWaterValue1;
-    private TextView mHotWaterValue2;
-    private TextView mHotWaterValue3;
-    private TextView mColdWaterValue1;
-    private TextView mColdWaterValue2;
-    private TextView mColdWaterValue3;
-    private TextView mCounterId;
-    private TextView mClientId;
+    private Task mCurrentTaskInCard;
+    private TextView mTVAddress;
+    private TextView mTVClient;
+    private TextView mTVPrevDate;
+    private TextView mTVPrevValue;
+    private TextView mTVCurrentDate;
+    private TextView mTVCurrentValue;
+    private Long mId;
+    private String mAddress;
+    private String mClient;
+    private String mClientId;
+    private Date mPrevDate;
+    private Long mPrevValue;
+    private Date mCurrentDate;
+    private Long mCurrentValue;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,25 +44,31 @@ public class CardActivity extends Activity implements Button.OnClickListener {
 
         TaskDao mTaskDao = daoSession.getTaskDao();
 
-        mId = getIntent().getExtras().getString("ID");
+        DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
 
-        mTask = mTaskDao.queryBuilder().where(TaskDao.Properties.TaskId.eq(mId)).build().list().get(0);
+        mId = getIntent().getExtras().getLong("id");
+        mAddress = getIntent().getExtras().getString("address");
+        mClient = getIntent().getExtras().getString("client");
+        mClientId = getIntent().getExtras().getString("client id");
+        //TODO ADD NORMAL CHECK
 
-        mElectricityValue1 = findViewById(R.id.editTextElectricity1);
-        mElectricityValue2 = findViewById(R.id.editTextElectricity2);
-        mElectricityValue3 = findViewById(R.id.editTextElectricity3);
 
-        mHotWaterValue1 = findViewById(R.id.editTextHotWater1);
-        mHotWaterValue2 = findViewById(R.id.editTextHotWater2);
-        mHotWaterValue3 = findViewById(R.id.editTextHotWater3);
+//        try {
+//            Toast.makeText(this, formatter.parse(getIntent().getExtras().getString("prev date")).toString(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, formatter.parse(getIntent().getExtras().getString("current date")).toString(), Toast.LENGTH_SHORT).show();
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        try {
+//            mPrevDate = formatter.parse(getIntent().getExtras().getString("prev date"));
+//            mCurrentDate = formatter.parse(getIntent().getExtras().getString("prev date"));
+//        } catch (ParseException e) {
+//            Toast.makeText(this, "Ошибка открытия карточки", Toast.LENGTH_SHORT).show();
+//        }
+        mPrevValue = getIntent().getExtras().getLong("prev date value");
+        mCurrentValue = getIntent().getExtras().getLong("current date value");
 
-        mColdWaterValue1 = findViewById(R.id.editTextColdWater1);
-        mColdWaterValue2 = findViewById(R.id.editTextColdWater2);
-        mColdWaterValue3 = findViewById(R.id.editTextColdWater3);
-
-        mCounterId = findViewById(R.id.textViewCounterIdNumbers);
-
-        mClientId = findViewById(R.id.textViewClientIdNumbers);
+        mCurrentTaskInCard = mTaskDao.queryBuilder().where(TaskDao.Properties.TaskId.eq(mId)).build().list().get(0);
 
         Button bWrite = findViewById(R.id.button);
         bWrite.setOnClickListener(this);
@@ -62,43 +77,20 @@ public class CardActivity extends Activity implements Button.OnClickListener {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.i(TAG, "to card for task with id = " + mId);
-        if (mTask.getElectricityType() == 1) {
-
-            Long electro1 = mTask.getElectricityValue1();
-            if (electro1 != null) mElectricityValue1.setText(String.format("%s", electro1));
-        }
-        if (mTask.getHotWaterType() == 1) {
-            Long hot1 = mTask.getHotWaterValue1();
-            if (hot1 != null) mHotWaterValue1.setText(String.format("%s", hot1));
-        }
-        if (mTask.getColdWaterType() == 1) {
-            Long cold1 = mTask.getColdWaterValue1();
-            if (cold1 != null) mColdWaterValue1.setText(String.format("%s", cold1));
-        }
-        mCounterId.setText("украло НЛО");
-        mClientId.setText("украло НЛО");
     }
 
     @Override
     public void onClick(View v) {
-        //TODO CHECK ONLY FOR NUMBER
-        Long electricity = Long.parseLong(mElectricityValue1.getText().toString());
-        Long hotWater = Long.parseLong(mHotWaterValue1.getText().toString());
-        Long coldWater = Long.parseLong(mColdWaterValue1.getText().toString());
-        mTask.setElectricityValue1(electricity);
-        mTask.setHotWaterValue1(hotWater);
-        mTask.setColdWaterValue1(coldWater);
-        if (electricity > (long) 0 & hotWater > (long) 0 & coldWater > (long) 0 & !electricity.equals((long) 0) & !hotWater.equals((long) 0) & !coldWater.equals((long) 0)) {
-            mTask.setStatus((byte) 1);
-        } else if (electricity.equals((long) 0) | hotWater.equals((long) 0) | coldWater.equals((long) 0)) {
-            mTask.setStatus((byte) 2);
+        EditText ETCurrentValue = findViewById(R.id.idCurrentValueEditText);
+        Long value = Long.parseLong(ETCurrentValue.getText().toString());
+        if (value > 0) {
+            mCurrentTaskInCard.setN_current_value(value);
+            mCurrentTaskInCard.update();
+            Log.i(TAG, "updated task with id = " + mId);
+            Toast.makeText(this, "Показания записаны", Toast.LENGTH_SHORT).show();
+            this.finish();
         } else {
-            mTask.setStatus((byte) 3);
+            Toast.makeText(this, "Введите правильные показания!", Toast.LENGTH_SHORT).show();
         }
-        mTask.update();
-        Log.i(TAG, "updated task with id = " + mId);
-        Toast.makeText(this, "Показания записаны", Toast.LENGTH_SHORT).show();
-        this.finish();
     }
 }

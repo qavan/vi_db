@@ -3,6 +3,7 @@ package com.qavan.vi_db;
 import org.greenrobot.greendao.query.Query;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -11,15 +12,20 @@ import java.util.Random;
 class Utils {
     static Task createDefaultOneTypeSizeTask() {
         String TITLE = "Прием показаний от 01.01.1970 00:00";
-        String ADDRESS = "Тут адрес задания в 2 строки, просто поверь мне!";
+        String ADDRESS = "HERE IS ADDRESS IN\nTWO LINES";
         Date now = new Date();
         DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
-        String DATE = formatter.format(now);
-        String CLIENT = "Физлицо\\Юрлицо";
-        return new Task((byte) 0, TITLE, ADDRESS, DATE, CLIENT,
-                (byte) 1, (long) 0, null, null,
-                (byte) 1, (long) 0, null, null,
-                (byte) 1, (long) 0, null, null);
+        try {
+            Date DATE = formatter.parse(now.toString());
+            String CLIENT = "CLIENT NAME";
+            String CLIENT_ID = "CLIENT ID";
+            return new Task(CLIENT, ADDRESS, CLIENT_ID, DATE, (long) 0, DATE, (long) 0, false);
+        } catch (ParseException e) {
+            Date DATE = now;
+            String CLIENT = "CLIENT NAME";
+            String CLIENT_ID = "CLIENT ID";
+            return new Task(CLIENT, ADDRESS, CLIENT_ID, DATE, (long) 0, DATE, (long) 0, false);
+        }
     }
 
     static void updateTasks(List<Task> tasks, Query<Task> tasksQuery, TaskAdapter mTaskAdapter) {

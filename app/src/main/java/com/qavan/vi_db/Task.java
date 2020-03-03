@@ -7,288 +7,135 @@ import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.DaoException;
 
+import java.util.Date;
+
 
 @Entity(active = true, nameInDb = "TASKS_TEST")
 public class Task {
     @Id
     private Long TaskId;
     @NotNull
-    private Byte Status;
+    private String c_client;
     @NotNull
-    private String Title;
+    private String c_address;
+    private String c_client_id;
+    private Date d_prev_date;
+    private Long n_prev_value;
     @NotNull
-    private String Address;
+    private Date d_current_date;
     @NotNull
-    private String ExpireDate;
+    private Long n_current_value;
     @NotNull
-    private String Client;
-    @NotNull
-    private Byte ElectricityType;
-    @NotNull
-    private Long ElectricityValue1;
-    private Long ElectricityValue2;
-    private Long ElectricityValue3;
-    @NotNull
-    private Byte HotWaterType;
-    @NotNull
-    private Long HotWaterValue1;
-    private Long HotWaterValue2;
-    private Long HotWaterValue3;
-    @NotNull
-    private Byte ColdWaterType;
-    @NotNull
-    private Long ColdWaterValue1;
-    private Long ColdWaterValue2;
-    private Long ColdWaterValue3;
+    private Boolean b_done;
     /**
      * Used to resolve relations
      */
     @Generated(hash = 2040040024)
     private transient DaoSession daoSession;
-    /**
-     * Used for active entity operations.
-     */
+    /** Used for active entity operations. */
     @Generated(hash = 1469429066)
     private transient TaskDao myDao;
 
-
-    Task(Byte status, String title, String address, String expireDate, String client,
-         Byte electricityType, Long eValue1, @NotNull Long eValue2, @NotNull Long eValue3,
-         Byte hotWaterType, Long hotWaterValue1, @NotNull Long hotWaterValue2, @NotNull Long hotWaterValue3,
-         Byte coldWaterType, Long coldWaterValue1, @NotNull Long coldWaterValue2, @NotNull Long coldWaterValue3
-    ) {
-        this.Status = status;
-        this.Title = title;
-        this.Address = address;
-        this.ExpireDate = expireDate;
-        this.Client = client;
-        this.ElectricityType = electricityType;
-        this.ElectricityValue1 = eValue1;
-        this.ElectricityValue2 = eValue2;
-        this.ElectricityValue3 = eValue3;
-        this.HotWaterType = hotWaterType;
-        this.HotWaterValue1 = hotWaterValue1;
-        this.HotWaterValue2 = hotWaterValue2;
-        this.HotWaterValue3 = hotWaterValue3;
-        this.ColdWaterType = coldWaterType;
-        this.ColdWaterValue1 = coldWaterValue1;
-        this.ColdWaterValue2 = coldWaterValue2;
-        this.ColdWaterValue3 = coldWaterValue3;
+    Task(String Client, String Address, String ClientId, Date PrevDate, Long PrevValue, Date CurrentDate, Long CurrentValue, Boolean Done) {
+        this.c_client = Client;
+        this.c_address = Address;
+        this.c_client_id = ClientId;
+        this.d_prev_date = PrevDate;
+        this.n_prev_value = PrevValue;
+        this.d_current_date = CurrentDate;
+        this.n_current_value = CurrentValue;
+        this.b_done = Done;
     }
 
-
-    @Generated(hash = 120659735)
-    public Task(Long TaskId, @NotNull Byte Status, @NotNull String Title, @NotNull String Address,
-                @NotNull String ExpireDate, @NotNull String Client, @NotNull Byte ElectricityType,
-                @NotNull Long ElectricityValue1, Long ElectricityValue2, Long ElectricityValue3,
-                @NotNull Byte HotWaterType, @NotNull Long HotWaterValue1, Long HotWaterValue2, Long HotWaterValue3,
-                @NotNull Byte ColdWaterType, @NotNull Long ColdWaterValue1, Long ColdWaterValue2,
-                Long ColdWaterValue3) {
+    @Generated(hash = 676266137)
+    public Task(Long TaskId, @NotNull String c_client, @NotNull String c_address, String c_client_id, Date d_prev_date, Long n_prev_value,
+                @NotNull Date d_current_date, @NotNull Long n_current_value, @NotNull Boolean b_done) {
         this.TaskId = TaskId;
-        this.Status = Status;
-        this.Title = Title;
-        this.Address = Address;
-        this.ExpireDate = ExpireDate;
-        this.Client = Client;
-        this.ElectricityType = ElectricityType;
-        this.ElectricityValue1 = ElectricityValue1;
-        this.ElectricityValue2 = ElectricityValue2;
-        this.ElectricityValue3 = ElectricityValue3;
-        this.HotWaterType = HotWaterType;
-        this.HotWaterValue1 = HotWaterValue1;
-        this.HotWaterValue2 = HotWaterValue2;
-        this.HotWaterValue3 = HotWaterValue3;
-        this.ColdWaterType = ColdWaterType;
-        this.ColdWaterValue1 = ColdWaterValue1;
-        this.ColdWaterValue2 = ColdWaterValue2;
-        this.ColdWaterValue3 = ColdWaterValue3;
+        this.c_client = c_client;
+        this.c_address = c_address;
+        this.c_client_id = c_client_id;
+        this.d_prev_date = d_prev_date;
+        this.n_prev_value = n_prev_value;
+        this.d_current_date = d_current_date;
+        this.n_current_value = n_current_value;
+        this.b_done = b_done;
     }
-
 
     @Generated(hash = 733837707)
     public Task() {
     }
 
-
     public Long getTaskId() {
         return this.TaskId;
     }
-
 
     public void setTaskId(Long TaskId) {
         this.TaskId = TaskId;
     }
 
-
-    public Byte getStatus() {
-        return this.Status;
+    public String getC_client() {
+        return this.c_client;
     }
 
-
-    public void setStatus(Byte Status) {
-        this.Status = Status;
+    public void setC_client(String c_client) {
+        this.c_client = c_client;
     }
 
-
-    public String getTitle() {
-        return this.Title;
+    public String getC_address() {
+        return this.c_address;
     }
 
-
-    public void setTitle(String Title) {
-        this.Title = Title;
+    public void setC_address(String c_address) {
+        this.c_address = c_address;
     }
 
-
-    public String getAddress() {
-        return this.Address;
+    public String getC_client_id() {
+        return this.c_client_id;
     }
 
-
-    public void setAddress(String Address) {
-        this.Address = Address;
+    public void setC_client_id(String c_client_id) {
+        this.c_client_id = c_client_id;
     }
 
-
-    public String getExpireDate() {
-        return this.ExpireDate;
+    public Date getD_prev_date() {
+        return this.d_prev_date;
     }
 
-
-    public void setExpireDate(String ExpireDate) {
-        this.ExpireDate = ExpireDate;
+    public void setD_prev_date(Date d_prev_date) {
+        this.d_prev_date = d_prev_date;
     }
 
-
-    public String getClient() {
-        return this.Client;
+    public Long getN_prev_value() {
+        return this.n_prev_value;
     }
 
-
-    public void setClient(String Client) {
-        this.Client = Client;
+    public void setN_prev_value(Long n_prev_value) {
+        this.n_prev_value = n_prev_value;
     }
 
-
-    public Byte getElectricityType() {
-        return this.ElectricityType;
+    public Date getD_current_date() {
+        return this.d_current_date;
     }
 
-
-    public void setElectricityType(Byte ElectricityType) {
-        this.ElectricityType = ElectricityType;
+    public void setD_current_date(Date d_current_date) {
+        this.d_current_date = d_current_date;
     }
 
-
-    public Long getElectricityValue1() {
-        return this.ElectricityValue1;
+    public Long getN_current_value() {
+        return this.n_current_value;
     }
 
-
-    public void setElectricityValue1(Long ElectricityValue1) {
-        this.ElectricityValue1 = ElectricityValue1;
+    public void setN_current_value(Long n_current_value) {
+        this.n_current_value = n_current_value;
     }
 
-
-    public Long getElectricityValue2() {
-        return this.ElectricityValue2;
+    public Boolean getB_done() {
+        return this.b_done;
     }
 
-
-    public void setElectricityValue2(Long ElectricityValue2) {
-        this.ElectricityValue2 = ElectricityValue2;
+    public void setB_done(Boolean b_done) {
+        this.b_done = b_done;
     }
-
-
-    public Long getElectricityValue3() {
-        return this.ElectricityValue3;
-    }
-
-
-    public void setElectricityValue3(Long ElectricityValue3) {
-        this.ElectricityValue3 = ElectricityValue3;
-    }
-
-
-    public Byte getHotWaterType() {
-        return this.HotWaterType;
-    }
-
-
-    public void setHotWaterType(Byte HotWaterType) {
-        this.HotWaterType = HotWaterType;
-    }
-
-
-    public Long getHotWaterValue1() {
-        return this.HotWaterValue1;
-    }
-
-
-    public void setHotWaterValue1(Long HotWaterValue1) {
-        this.HotWaterValue1 = HotWaterValue1;
-    }
-
-
-    public Long getHotWaterValue2() {
-        return this.HotWaterValue2;
-    }
-
-
-    public void setHotWaterValue2(Long HotWaterValue2) {
-        this.HotWaterValue2 = HotWaterValue2;
-    }
-
-
-    public Long getHotWaterValue3() {
-        return this.HotWaterValue3;
-    }
-
-
-    public void setHotWaterValue3(Long HotWaterValue3) {
-        this.HotWaterValue3 = HotWaterValue3;
-    }
-
-
-    public Byte getColdWaterType() {
-        return this.ColdWaterType;
-    }
-
-
-    public void setColdWaterType(Byte ColdWaterType) {
-        this.ColdWaterType = ColdWaterType;
-    }
-
-
-    public Long getColdWaterValue1() {
-        return this.ColdWaterValue1;
-    }
-
-
-    public void setColdWaterValue1(Long ColdWaterValue1) {
-        this.ColdWaterValue1 = ColdWaterValue1;
-    }
-
-
-    public Long getColdWaterValue2() {
-        return this.ColdWaterValue2;
-    }
-
-
-    public void setColdWaterValue2(Long ColdWaterValue2) {
-        this.ColdWaterValue2 = ColdWaterValue2;
-    }
-
-
-    public Long getColdWaterValue3() {
-        return this.ColdWaterValue3;
-    }
-
-
-    public void setColdWaterValue3(Long ColdWaterValue3) {
-        this.ColdWaterValue3 = ColdWaterValue3;
-    }
-
 
     /**
      * Convenient call for {@link org.greenrobot.greendao.AbstractDao#delete(Object)}.
@@ -302,7 +149,6 @@ public class Task {
         myDao.delete(this);
     }
 
-
     /**
      * Convenient call for {@link org.greenrobot.greendao.AbstractDao#refresh(Object)}.
      * Entity must attached to an entity context.
@@ -314,7 +160,6 @@ public class Task {
         }
         myDao.refresh(this);
     }
-
 
     /**
      * Convenient call for {@link org.greenrobot.greendao.AbstractDao#update(Object)}.
@@ -328,10 +173,7 @@ public class Task {
         myDao.update(this);
     }
 
-
-    /**
-     * called by internal mechanisms, do not call yourself.
-     */
+    /** called by internal mechanisms, do not call yourself. */
     @Generated(hash = 1442741304)
     public void __setDaoSession(DaoSession daoSession) {
         this.daoSession = daoSession;
