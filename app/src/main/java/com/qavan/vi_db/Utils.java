@@ -31,6 +31,16 @@ class Utils {
         return formatter.format(date);
     }
 
+    public static Date getFormattedDMYDate2(String date) {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
+        try {
+            return formatter.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static Date getCurrentDate() {
         return new Date();
     }

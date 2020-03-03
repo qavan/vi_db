@@ -7,6 +7,10 @@ import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.DaoException;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Calendar;
 import java.util.Date;
 
 
@@ -45,6 +49,33 @@ public class Task {
         this.d_current_date = CurrentDate;
         this.n_current_value = CurrentValue;
         this.b_done = Done;
+    }
+
+    Task(String Client, String Address, String ClientId, String PrevDate, String PrevValue, String CurrentDate, String CurrentValue, String Done) {
+        this.c_client = Client;
+        this.c_address = Address;
+        this.c_client_id = ClientId;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss");
+        try {
+            this.d_prev_date = sdf.parse(PrevDate.replace("Z", "").replace("T", "-"));
+            this.d_current_date = sdf.parse(CurrentDate.replace("Z", "").replace("T", "-"));
+        } catch (ParseException e) {
+            this.d_prev_date = null;
+            this.d_current_date = null;
+        }
+        try {
+            this.n_prev_value = (long) Float.parseFloat(PrevValue);
+        } catch (NumberFormatException e) {
+            this.n_prev_value = null;
+//            e.printStackTrace();
+        }
+        try {
+            this.n_current_value = (long) Float.parseFloat(CurrentValue);
+        } catch (NumberFormatException e) {
+            this.n_current_value = null;
+//            e.printStackTrace();
+        }
+        this.b_done = Boolean.valueOf(Done);
     }
 
     @Generated(hash = 676266137)
