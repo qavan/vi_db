@@ -11,11 +11,10 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import java.util.Date;
-
 
 public class CardActivity extends Activity implements Button.OnClickListener {
-    private final String TAG = "CARD_ACTIVITY";
+    private static final String TAG = "CARD_ACTIVITY";
+
     private TaskDao mTaskDao;
     private Task mCurrentTaskInCard;
     private TextView mETClient;
@@ -29,10 +28,10 @@ public class CardActivity extends Activity implements Button.OnClickListener {
     private String mAddress;
     private String mClient;
     private String mClientId;
-    private Date mPrevDate;
-    private Date mCurrentDate;
-    private Long mPrevValue;
-    private Long mCurrentValue;
+    private String mPrevDate;
+    private String mCurrentDate;
+    private String mPrevValue;
+    private String mCurrentValue;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -77,10 +76,13 @@ public class CardActivity extends Activity implements Button.OnClickListener {
         mETClientId.setText(mCurrentTaskInCard.getC_client_id());
         mETClient.setText(mCurrentTaskInCard.getC_client());
         mETAddress.setText(mCurrentTaskInCard.getC_address());
-        mTVPrevDate.setText(String.format("Предыдущее от %s", Utils.getFormattedDMYDate(mCurrentTaskInCard.getD_prev_date())));
-        mTVCurrentDate.setText(String.format("   Текущее от %s", Utils.getFormattedDMYDate(mCurrentTaskInCard.getD_current_date())));
-        mTVPrevValue.setText(mCurrentTaskInCard.getN_prev_value().toString());
-        mTVCurrentValue.setText(mCurrentTaskInCard.getN_current_value().toString());
+
+        System.out.println(mCurrentTaskInCard.getD_prev_date());
+
+        mTVPrevDate.setText(String.format("Предыдущее от %s", Utils.getFormattedDateDDMMYY(Utils.getJavaMainFormattedDate(mCurrentTaskInCard.getD_prev_date()))));
+        mTVCurrentDate.setText(String.format("   Текущее от %s", Utils.getFormattedDateDDMMYY(Utils.getJavaMainFormattedDate(mCurrentTaskInCard.getD_current_date()))));
+        mTVPrevValue.setText(mCurrentTaskInCard.getN_prev_value());
+        mTVCurrentValue.setText(mCurrentTaskInCard.getN_current_value());
     }
 
     @Override

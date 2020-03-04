@@ -71,7 +71,7 @@ public class TaskAdapter extends RecyclerView.Adapter {
 
         TaskViewHolder.title.setText("Приём показаний");
         TaskViewHolder.address.setText(task.getC_address());
-        TaskViewHolder.date.setText(String.format("До %s", Utils.getFormattedDMYDate(task.getD_prev_date())));
+        TaskViewHolder.date.setText(String.format("До %s", Utils.getFormattedDateDDMMYY(Utils.getJavaMainFormattedDate(task.getD_prev_date()))));
         TaskViewHolder.client.setText(task.getC_client());
     }
 

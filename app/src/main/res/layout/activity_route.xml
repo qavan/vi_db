@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="5dp"
-            android:text="@string/add_task"
+            android:text="@string/sync_tasks"
             android:textColor="@color/colorBlackPrimary"
             android:textSize="12sp" />
 

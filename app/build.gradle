@@ -20,7 +20,7 @@ android {
     }
 }
 
-greendao { schemaVersion 23 }
+greendao { schemaVersion 28 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -29,5 +29,4 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'org.greenrobot:greendao:3.2.2'
     implementation 'com.squareup.okhttp3:okhttp:4.4.0'
-    implementation 'com.google.code.gson:gson:2.8.6'
 }
