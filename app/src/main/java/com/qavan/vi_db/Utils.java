@@ -21,7 +21,7 @@ class Utils {
         String CLIENT = "CLIENT NAME";
         String CLIENT_ID = "CLIENT ID";
         String CURRENT_DATE = getCurrentDate().toString();
-        return new Task(CLIENT, ADDRESS, CLIENT_ID, CURRENT_DATE, null, CURRENT_DATE, null, false);
+        return new Task(null, CLIENT, ADDRESS, CLIENT_ID, CURRENT_DATE, null, CURRENT_DATE, null, false);
     }
 
     static void updateTasks(List<Task> tasks, Query<Task> tasksQuery, TaskAdapter mTaskAdapter) {
@@ -29,7 +29,7 @@ class Utils {
         mTaskAdapter.setTasks(tasks);
     }
 
-    private static Date getCurrentDate() {
+    public static Date getCurrentDate() {
         return new Date();
     }
 
@@ -44,6 +44,7 @@ class Utils {
 
     public static String getFormattedDateDDMMYY(Date date) {
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
+//        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-dd-MM");
         return formatter.format(date);
     }
 

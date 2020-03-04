@@ -13,6 +13,8 @@ public class Task {
     @Id
     private Long TaskId;
     @NotNull
+    private String postgreId;
+    @NotNull
     private String c_client;
     @NotNull
     private String c_address;
@@ -35,7 +37,8 @@ public class Task {
     private transient TaskDao myDao;
 
 
-    Task(String Client, String Address, String ClientId, String PrevDate, String PrevValue, String CurrentDate, String CurrentValue, Boolean Done) {
+    Task(String id, String Client, String Address, String ClientId, String PrevDate, String PrevValue, String CurrentDate, String CurrentValue, Boolean Done) {
+        this.postgreId = id;
         this.c_client = Client;
         this.c_address = Address;
         this.c_client_id = ClientId;
@@ -47,10 +50,11 @@ public class Task {
     }
 
 
-    @Generated(hash = 2027103980)
-    public Task(Long TaskId, @NotNull String c_client, @NotNull String c_address, String c_client_id, String d_prev_date, String n_prev_value,
-                @NotNull String d_current_date, @NotNull String n_current_value, @NotNull Boolean b_done) {
+    @Generated(hash = 603453828)
+    public Task(Long TaskId, @NotNull String postgreId, @NotNull String c_client, @NotNull String c_address, String c_client_id, String d_prev_date,
+                String n_prev_value, @NotNull String d_current_date, @NotNull String n_current_value, @NotNull Boolean b_done) {
         this.TaskId = TaskId;
+        this.postgreId = postgreId;
         this.c_client = c_client;
         this.c_address = c_address;
         this.c_client_id = c_client_id;
@@ -74,6 +78,16 @@ public class Task {
 
     public void setTaskId(Long TaskId) {
         this.TaskId = TaskId;
+    }
+
+
+    public String getPostgreId() {
+        return this.postgreId;
+    }
+
+
+    public void setPostgreId(String postgreId) {
+        this.postgreId = postgreId;
     }
 
 
@@ -196,7 +210,9 @@ public class Task {
     }
 
 
-    /** called by internal mechanisms, do not call yourself. */
+    /**
+     * called by internal mechanisms, do not call yourself.
+     */
     @Generated(hash = 1442741304)
     public void __setDaoSession(DaoSession daoSession) {
         this.daoSession = daoSession;

@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 public class CardActivity extends Activity implements Button.OnClickListener {
     private static final String TAG = "CARD_ACTIVITY";
 
+    private Task mTask;
     private TaskDao mTaskDao;
     private Task mCurrentTaskInCard;
     private TextView mETClient;
@@ -63,32 +64,57 @@ public class CardActivity extends Activity implements Button.OnClickListener {
         mAddress = mCurrentTaskInCard.getC_address();
         mClient = mCurrentTaskInCard.getC_client();
         mClientId = mCurrentTaskInCard.getC_client_id();
-        mPrevDate = mCurrentTaskInCard.getD_prev_date();
-        mCurrentDate = mCurrentTaskInCard.getD_current_date();
+//        try {
+//            mPrevDate = Utils.getFormattedDateDDMMYY(Utils.getJavaMainFormattedDate(mCurrentTaskInCard.getD_prev_date()));
+//        }
+//        catch (NullPointerException e) {
+//            mPrevDate = null;
+//        }
+//        try {
+//            mCurrentDate = Utils.getFormattedDateDDMMYY(Utils.getJavaMainFormattedDate(mCurrentTaskInCard.getD_current_date()));
+//        }
+//        catch (NullPointerException e) {
+//            mCurrentDate = null;
+//        }
         mPrevValue = mCurrentTaskInCard.getN_prev_value();
         mCurrentValue = mCurrentTaskInCard.getN_current_value();
+
         if (mPrevDate == null) {
             Toast.makeText(this, "Даты отсутствуют mPrevDate", Toast.LENGTH_LONG).show();
         } else if (mCurrentDate == null) {
             Toast.makeText(this, "Даты отсутствуют mCurrentDate", Toast.LENGTH_LONG).show();
         }
 
-        mETClientId.setText(mCurrentTaskInCard.getC_client_id());
-        mETClient.setText(mCurrentTaskInCard.getC_client());
-        mETAddress.setText(mCurrentTaskInCard.getC_address());
+        mETClientId.setText(mClientId);
+        mETClient.setText(mClient);
+        mETAddress.setText(mAddress);
+        mTVPrevDate.setText(String.format("Предыдущее от %s", mPrevDate));
+        mTVCurrentDate.setText(String.format("   Текущее от %s", mCurrentDate));
 
-        System.out.println(mCurrentTaskInCard.getD_prev_date());
 
-        mTVPrevDate.setText(String.format("Предыдущее от %s", Utils.getFormattedDateDDMMYY(Utils.getJavaMainFormattedDate(mCurrentTaskInCard.getD_prev_date()))));
-        mTVCurrentDate.setText(String.format("   Текущее от %s", Utils.getFormattedDateDDMMYY(Utils.getJavaMainFormattedDate(mCurrentTaskInCard.getD_current_date()))));
-        mTVPrevValue.setText(mCurrentTaskInCard.getN_prev_value());
-        mTVCurrentValue.setText(mCurrentTaskInCard.getN_current_value());
+        if (!mPrevValue.equals("null"))
+            mTVPrevValue.setText(mPrevValue);
+        else
+            mTVPrevValue.setText("0");
+        if (!mCurrentValue.equals("null"))
+            mTVCurrentValue.setText(mCurrentValue);
+        else
+            mTVCurrentValue.setText("");
     }
 
     @Override
     public void onClick(View v) {
-        if (false) {
-            Log.i(TAG, "updated task with id = " + mId);
+        Long newValue = Long.parseLong(mTVCurrentValue.getText().toString());
+        if (newValue != null) {
+            mTask = mTaskDao.queryBuilder().where(TaskDao.Properties.TaskId.eq(mId)).build().list().get(0);
+
+//            mTask.setD_prev_date(mCurrentTaskInCard.getD_current_date());
+//            mTask.setD_current_date(Utils.getFormattedDateDDMMYY(Utils.getCurrentDate()));
+
+            mTask.setN_prev_value(mCurrentValue);
+            mTask.setN_current_value(newValue.toString());
+            mTask.update();
+            Log.i(TAG, "Task updated locally" + mId);
             Toast.makeText(this, "Показания записаны", Toast.LENGTH_SHORT).show();
             this.finish();
         } else {

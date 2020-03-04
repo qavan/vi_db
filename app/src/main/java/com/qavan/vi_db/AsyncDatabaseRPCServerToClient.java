@@ -20,8 +20,8 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class AsyncDatabaseUpdater extends AsyncTask<String, Void, List<Task>> {
-    private final static String TAG = "ASYNC_DATABASE_UPDATER";
+public class AsyncDatabaseRPCServerToClient extends AsyncTask<String, Void, List<Task>> {
+    private final static String TAG = "ASYNC_RPC_TO_CLIENT";
 
     private List<Task> mRemoteTasks = new ArrayList<>();
     private OkHttpClient mHttpClient = new OkHttpClient();
@@ -63,7 +63,7 @@ public class AsyncDatabaseUpdater extends AsyncTask<String, Void, List<Task>> {
                 for (int i = 0; i < Jsonarr.length(); i++) {
                     try {
                         JSONObject currObj = Jsonarr.getJSONObject(i);
-                        Task tmpTask = new Task(currObj.get("c_subscr").toString(), currObj.get("c_address").toString(), currObj.get("c_subscr").toString(), currObj.get("d_prev_date").toString(), currObj.get("n_prev_value").toString(), currObj.get("d_current_date").toString(), currObj.get("n_current_value").toString(), Boolean.valueOf(currObj.get("b_done").toString()));
+                        Task tmpTask = new Task(currObj.get("id").toString(), currObj.get("c_subscr").toString(), currObj.get("c_address").toString(), currObj.get("c_subscr").toString(), currObj.get("d_prev_date").toString(), currObj.get("n_prev_value").toString(), currObj.get("d_current_date").toString(), currObj.get("n_current_value").toString(), Boolean.valueOf(currObj.get("b_done").toString()));
                         mRemoteTasks.add(tmpTask);
                     } catch (JSONException e) {
                         Log.i(TAG, String.format("JSONException error at task [i]=%s", i));

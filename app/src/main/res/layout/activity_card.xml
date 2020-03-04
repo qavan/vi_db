@@ -319,6 +319,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="0.35"
                     android:text="@string/CARD_ID"
+                    android:textAlignment="textEnd"
                     android:textColor="@color/colorBlackPrimaryLightOP45"
                     android:textSize="18sp"
                     android:textStyle="normal" />
@@ -332,7 +333,7 @@
                     android:clickable="false"
                     android:ems="10"
                     android:focusable="false"
-                    android:gravity="bottom"
+                    android:gravity="center"
                     android:text="@string/COMMON_TEXT_PLACEHOLDER"
                     android:textColor="@color/colorBlackPrimary"
                     android:textSize="20sp" />

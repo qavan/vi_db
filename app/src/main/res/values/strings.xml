@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">vi_db</string>
-    <string name="sync_tasks">Синхронизировать</string>
+    <string name="load_tasks">LOAD</string>
+    <string name="unload_tasks">UNLOAD</string>
 
     <string name="CARD_INDICATOR_HINT">Введите значение</string>
     <string name="CARD_RECORD_BUTTON">записать</string>
@@ -8,7 +9,7 @@
     <string name="CARD_ELECTRICITY">Электроэнергия</string>
     <string name="CARD_HOT_WATER">ГВС</string>
     <string name="CARD_COLD_WATER">ХВС</string>
-    <string name="CARD_ID">Лицевой счёт\nНомер</string>
+    <string name="CARD_ID">Лицевой счёт\t\t\nНомер\t\t</string>
     <string name="CARD_INDICATOR_ID">Номер счетчика</string>
     <string name="CARD_ID_PLACEHOLDER">00000 000000</string>
     <string name="CARD_INDICATOR_ID_PLACEHOLDER">000000000000</string>

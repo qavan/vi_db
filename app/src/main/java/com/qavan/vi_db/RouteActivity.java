@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ToggleButton;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class RouteActivity extends Activity implements ToggleButton.OnClickListener {
+public class RouteActivity extends Activity {
     private static final String TAG = "ROUTE_ACTIVITY";
     private static final String RPC_SERVER_ADDRESS = "http://kes.it-serv.ru/voice/rpc";
 
@@ -40,8 +39,11 @@ public class RouteActivity extends Activity implements ToggleButton.OnClickListe
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mTaskAdapter);
 
-        final Button mToggleButton = findViewById(R.id.idAddTaskButton);
-        mToggleButton.setOnClickListener(this);
+        final Button mSyncWithServer = findViewById(R.id.idSyncRPCServerToClientButton);
+        mSyncWithServer.setOnClickListener(asyncLoadFromServer);
+
+        final Button mSyncWithClient = findViewById(R.id.idSyncClientToRPCServerButton);
+        mSyncWithClient.setOnClickListener(asyncUnloadToServer);
 
         DaoSession daoSession = ((App) getApplication()).getDaoSession();
         mTaskDao = daoSession.getTaskDao();
@@ -68,12 +70,23 @@ public class RouteActivity extends Activity implements ToggleButton.OnClickListe
         Utils.updateTasks(mTasks, mTasksQuery, mTaskAdapter);
     }
 
-    @Override
-    public void onClick(View v) {
-        AsyncDatabaseUpdater aTask = new AsyncDatabaseUpdater();
-        aTask.execute(RPC_SERVER_ADDRESS);
-        Utils.updateTasks(mTasks, mTasksQuery, mTaskAdapter);
-    }
+    Button.OnClickListener asyncLoadFromServer = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            AsyncDatabaseRPCServerToClient aTask = new AsyncDatabaseRPCServerToClient();
+            aTask.execute(RPC_SERVER_ADDRESS);
+            Utils.updateTasks(mTasks, mTasksQuery, mTaskAdapter);
+        }
+    };
+
+    Button.OnClickListener asyncUnloadToServer = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            AsyncDatabaseClientToRPCServer aTask = new AsyncDatabaseClientToRPCServer();
+            aTask.execute(RouteActivity.getTasks());
+        }
+    };
+
 
     public Context getContext() {
         return getApplicationContext();
@@ -88,5 +101,9 @@ public class RouteActivity extends Activity implements ToggleButton.OnClickListe
             Log.i(RouteActivity.TAG, String.format("Got and synced %s tasks", mTasks.size()));
         } else
             Log.i(RouteActivity.TAG, "Tasks already synced");
+    }
+
+    public static List<Task> getTasks() {
+        return mTasksQuery.list();
     }
 }
