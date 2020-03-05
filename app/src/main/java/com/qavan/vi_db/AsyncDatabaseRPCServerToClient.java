@@ -22,19 +22,21 @@ import okhttp3.Response;
 
 public class AsyncDatabaseRPCServerToClient extends AsyncTask<String, Void, List<Task>> {
     private final static String TAG = "ASYNC_RPC_TO_CLIENT";
+    private static final String RPC_SERVER_TOKEN = "0LvQvtCz0LjQvTox";
+    private static final String RPC_SERVER_DATABASE_NAME = "cd_points";
 
     private List<Task> mRemoteTasks = new ArrayList<>();
     private OkHttpClient mHttpClient = new OkHttpClient();
 
     @Override
-    protected List<Task> doInBackground(String... check) {
+    protected List<Task> doInBackground(String... rpcServerRemoteAddressCanBeOnlyOneSizeStringList) {
         MediaType mediaType = MediaType.parse("application/json");
-        RequestBody body = RequestBody.create(mediaType, "{\n    \"action\":\"cd_points\",\n    \"method\":\"Query\",\n    \"data\":[\n       {\n          \"query\":\"\",\n          \"page\":1,\n          \"start\":0,\n          \"limit\":25\n       }\n    ],\n    \"type\":\"rpc\",\n    \"tid\":9\n }");
+        RequestBody body = RequestBody.create(mediaType, String.format("{\n    \"action\":\"%s\",\n    \"method\":\"Query\",\n    \"data\":[\n       {\n          \"query\":\"\",\n          \"page\":1,\n          \"start\":0,\n          \"limit\":25\n       }\n    ],\n    \"type\":\"rpc\",\n    \"tid\":9\n }", RPC_SERVER_DATABASE_NAME));
         Request request = new Request.Builder()
-                .url(check[0])
+                .url(rpcServerRemoteAddressCanBeOnlyOneSizeStringList[0])
                 .method("POST", body)
                 .addHeader("Content-Type", "application/json")
-                .addHeader("RPC-Authorization", "Token 0LvQvtCz0LjQvTox")
+                .addHeader("RPC-Authorization", String.format("Token %s", RPC_SERVER_TOKEN))
                 .build();
         mHttpClient.newCall(request).enqueue(new Callback() {
             @Override

@@ -43,7 +43,7 @@ public class RouteActivity extends Activity {
         mSyncWithServer.setOnClickListener(asyncLoadFromServer);
 
         final Button mSyncWithClient = findViewById(R.id.idSyncClientToRPCServerButton);
-        mSyncWithClient.setOnClickListener(asyncUnloadToServer);
+        mSyncWithClient.setOnClickListener(asyncUploadToServer);
 
         DaoSession daoSession = ((App) getApplication()).getDaoSession();
         mTaskDao = daoSession.getTaskDao();
@@ -79,7 +79,7 @@ public class RouteActivity extends Activity {
         }
     };
 
-    Button.OnClickListener asyncUnloadToServer = new View.OnClickListener() {
+    Button.OnClickListener asyncUploadToServer = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             AsyncDatabaseClientToRPCServer aTask = new AsyncDatabaseClientToRPCServer();
